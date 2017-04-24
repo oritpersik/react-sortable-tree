@@ -126,7 +126,7 @@ class TreeNode extends Component {
 
                 <div
                     className={styles.nodeContent}
-                    style={{ left: scaffoldBlockPxWidth * scaffoldBlockCount }}
+                    style={{ right: scaffoldBlockPxWidth * scaffoldBlockCount }}
                 >
                     {Children.map(children, child => cloneElement(child, {
                         isOver,
