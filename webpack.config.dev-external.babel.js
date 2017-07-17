@@ -6,7 +6,7 @@ import autoprefixer from 'autoprefixer';
 module.exports = {
   devtool: 'source-map',
   entry: {
-    demo: './src/examples/basicExample/app',
+    demo: './src/examples/externalNodeExample/app',
   },
   output: {
     path: 'build',
@@ -16,21 +16,17 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       inject: true,
-      template: './src/examples/basicExample/index.html',
+      template: './src/examples/externalNodeExample/index.html',
     }),
     new webpack.EnvironmentPlugin(['NODE_ENV']),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-      },
-    }),
+    new webpack.NoErrorsPlugin(),
   ],
   postcss: [autoprefixer({ browsers: ['IE >= 9', 'last 2 versions', '> 1%'] })],
   module: {
     loaders: [
       {
         test: /\.jsx?$/,
-        loaders: ['babel'],
+        loaders: ['react-hot', 'babel'],
         include: path.join(__dirname, 'src'),
       },
       {
@@ -57,5 +53,16 @@ module.exports = {
         include: path.join(__dirname, 'src'),
       },
     ],
+  },
+  devServer: {
+    contentBase: 'build',
+    port: 3001,
+    stats: {
+      chunks: false,
+      hash: false,
+      version: false,
+      assets: false,
+      children: false,
+    },
   },
 };

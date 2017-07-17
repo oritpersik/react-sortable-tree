@@ -6,7 +6,7 @@ import autoprefixer from 'autoprefixer';
 module.exports = {
   devtool: 'source-map',
   entry: {
-    demo: './src/examples/basicExample/app',
+    demo: './src/examples/externalNodeExample/app',
   },
   output: {
     path: 'build',
@@ -16,7 +16,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       inject: true,
-      template: './src/examples/basicExample/index.html',
+      template: './src/examples/externalNodeExample/index.html',
     }),
     new webpack.EnvironmentPlugin(['NODE_ENV']),
     new webpack.optimize.UglifyJsPlugin({
